@@ -41,6 +41,13 @@ public class Calculator1 extends JFrame {
         for (String label : buttonLabels) {
             JButton button = new JButton(label);
             button.setFont(new Font("SansSerif", Font.PLAIN, 20));
+
+            if ("0123456789±.".contains(label)) {
+                button.setBackground(Color.LIGHT_GRAY);
+            } else {
+                button.setBackground(Color.gray);
+            }
+
             p1.add(button);
         }
         add(p1, BorderLayout.CENTER);
