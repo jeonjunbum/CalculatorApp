@@ -1,11 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class Calculator1 extends JFrame {
     private JTextField displayField;
 
     Calculator1() {
-        setTitle("계산기");
+        setTitle("Calculator");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500, 700);
         setLayout(new BorderLayout());
@@ -23,6 +24,7 @@ public class Calculator1 extends JFrame {
         displayField.setEditable(false);
         displayField.setFont(new Font("SansSerif", Font.PLAIN, 20));
         displayField.setPreferredSize(new Dimension(500, 100));
+
         p1.add(displayField);
         add(p1, BorderLayout.NORTH);
     }
@@ -30,6 +32,7 @@ public class Calculator1 extends JFrame {
     void showCenter() {
         JPanel p1 = new JPanel();
         p1.setLayout(new GridLayout(5, 4, 2, 2));
+
         String[] buttonLabels = {
                 "AC", "CE", "BS", "÷",
                 "1", "2", "3", "x",
@@ -41,16 +44,27 @@ public class Calculator1 extends JFrame {
         for (String label : buttonLabels) {
             JButton button = new JButton(label);
             button.setFont(new Font("SansSerif", Font.PLAIN, 20));
+            button.addActionListener(this::buttonPressed); // 이벤트 리스너 추가
+            p1.add(button);
 
             if ("0123456789±.".contains(label)) {
                 button.setBackground(Color.LIGHT_GRAY);
             } else {
                 button.setBackground(Color.gray);
             }
-
-            p1.add(button);
         }
+
         add(p1, BorderLayout.CENTER);
+    }
+
+    private void buttonPressed(ActionEvent e) {
+        String command = ((JButton) e.getSource()).getText();
+
+        if (command.equals("AC")) {
+            displayField.setText("0");
+        } else if ("0123456789.".contains(command)) {
+            displayField.setText(displayField.getText() + command);
+        }
     }
 
     public static void main(String[] args) {
