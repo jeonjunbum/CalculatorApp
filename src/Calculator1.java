@@ -90,9 +90,22 @@ public class Calculator1 extends JFrame {
         } else if (command.equals("±")) {
             double value = Double.parseDouble(displayField.getText());
             displayField.setText(String.valueOf(-value));
+        } else { // 연산자 처리
+            if (startOfNumber && !command.equals("=")) {
+                operator = command;
+            } else {
+                double x = Double.parseDouble(displayField.getText());
+                calculate(x);
+                operator = command;
+                startOfNumber = true;
+            }
         }
     }
-            public static void main (String[]args){
-                new Calculator1();
+
+    private void calculate(double x) {
     }
-}
+
+    public static void main (String[]args){
+            new Calculator1();
+        }
+    }
