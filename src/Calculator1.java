@@ -44,7 +44,7 @@ public class Calculator1 extends JFrame {
         for (String label : buttonLabels) {
             JButton button = new JButton(label);
             button.setFont(new Font("SansSerif", Font.PLAIN, 20));
-            button.addActionListener(this::buttonPressed); // 이벤트 리스너 추가
+            button.addActionListener(this::buttonPressed);
             p1.add(button);
 
             if ("0123456789±.".contains(label)) {
@@ -64,6 +64,9 @@ public class Calculator1 extends JFrame {
             displayField.setText("0");
         } else if ("0123456789.".contains(command)) {
             displayField.setText(displayField.getText() + command);
+        } else if (command.equals("±")) {
+            double value = Double.parseDouble(displayField.getText());
+            displayField.setText(String.valueOf(-value));
         }
     }
 
