@@ -4,6 +4,9 @@ import java.awt.event.ActionEvent;
 
 public class Calculator1 extends JFrame {
     private JTextField displayField;
+    private boolean startOfNumber = true;
+    private String operator = "=";
+    private double result = 0;
 
     Calculator1() {
         setTitle("Calculator");
@@ -60,17 +63,36 @@ public class Calculator1 extends JFrame {
     private void buttonPressed(ActionEvent e) {
         String command = ((JButton) e.getSource()).getText();
 
+        // AC 버튼 클릭 처리
         if (command.equals("AC")) {
+            result = 0;
+            operator = "=";
+            startOfNumber = true;
             displayField.setText("0");
+        } else if (command.equals("CE")) {
+            displayField.setText("0");
+            startOfNumber = true;
+        } else if (command.equals("BS")) {
+            String currentText = displayField.getText();
+            if (currentText.length() > 1) {
+                displayField.setText(currentText.substring(0, currentText.length() - 1));
+            } else {
+                displayField.setText("0");
+                startOfNumber = true;
+            }
         } else if ("0123456789.".contains(command)) {
-            displayField.setText(displayField.getText() + command);
+            if (startOfNumber || displayField.getText().equals("0")) {
+                displayField.setText(command);
+                startOfNumber = false;
+            } else {
+                displayField.setText(displayField.getText() + command);
+            }
         } else if (command.equals("±")) {
             double value = Double.parseDouble(displayField.getText());
             displayField.setText(String.valueOf(-value));
         }
     }
-
-    public static void main(String[] args) {
-        new Calculator1();
+            public static void main (String[]args){
+                new Calculator1();
     }
 }
