@@ -103,6 +103,28 @@ public class Calculator1 extends JFrame {
     }
 
     private void calculate(double x) {
+        switch (operator) {
+            case "+":
+                result += x;
+                break;
+            case "-":
+                result -= x;
+                break;
+            case "x":
+                result *= x;
+                break;
+            case "÷":
+                if (x != 0) {
+                    result /= x;
+                } else {
+                    JOptionPane.showMessageDialog(this, "Cannot divide by zero.");
+                }
+                break;
+            case "=":
+                result = x;
+                break;
+        }
+        displayField.setText("" + result);
     }
 
     public static void main (String[]args){
