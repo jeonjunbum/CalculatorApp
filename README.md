@@ -1,4 +1,6 @@
 # Java Swing Calculator
+[계산기 이미지]
+![image](https://github.com/user-attachments/assets/c6a453d5-afab-4a69-98b1-f619ee0d8626)
 
 이 프로젝트는 Java Swing을 이용하여 간단한 계산기 GUI 애플리케이션을 구현한 것입니다. 이 계산기는 기본적인 사칙연산(덧셈, 뺄셈, 곱셈, 나눗셈)과 함께 초기화, 백스페이스, 부호 변경 등의 특수 기능을 제공합니다.
 
